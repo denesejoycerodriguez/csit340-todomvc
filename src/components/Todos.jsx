@@ -34,6 +34,8 @@ function Todos() {
     setTodos(todos.filter((todo) => todo.id !== id))
   }
 
+  const itemsLeft = todos.filter((todo) => !todo.completed).length
+
   return (
     <section className="mx-auto max-w-[550px]">
       <h1 className="text-center text-[80px] font-extralight text-[#b83f45]">
@@ -68,10 +70,10 @@ function Todos() {
                             className="group relative flex items-center border-b border-[#ededed] text-2xl"
                         >
                             <input
-                            type="checkbox"
-                            checked={todo.completed}
-                            onChange={() => handleToggle(todo.id)}
-                            className="ml-[15px] size-[30px] shrink-0 cursor-pointer accent-[#59a193]"
+                                type="checkbox"
+                                checked={todo.completed}
+                                onChange={() => handleToggle(todo.id)}
+                                className="ml-[15px] size-[30px] shrink-0 cursor-pointer accent-[#59a193]"
                             />
                             <span
                             className={
@@ -83,9 +85,9 @@ function Todos() {
                             {todo.text}
                             </span>
                             <button
-                            type="button"
-                            onClick={() => handleDelete(todo.id)}
-                            className="absolute right-[10px] hidden size-10 cursor-pointer text-[30px] text-[#949494] group-hover:block hover:text-[#c18585]"
+                                type="button"
+                                onClick={() => handleDelete(todo.id)}
+                                className="absolute right-[10px] hidden size-10 cursor-pointer text-[30px] text-[#949494] group-hover:block hover:text-[#c18585]"
                             >
                             ×
                             </button>
@@ -96,7 +98,8 @@ function Todos() {
 
                 <footer className="grid h-10 grid-cols-3 items-center border-t border-[#e6e6e6] px-[15px] text-[15px]">
                     <span>
-                        <strong className="font-light">1</strong> item left
+                        <strong className="font-light">{itemsLeft}</strong>{' '}
+                        {itemsLeft === 1 ? 'item' : 'items'} left
                     </span>
                     <ul className="flex justify-center gap-1">
                         <li>
